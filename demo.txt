@@ -1,0 +1,38 @@
+- to run all test:
+npx playwright test
+
+- to run specific test:
+npx playwright test ./tests/example_1.spec.ts
+
+- to show report:
+npx playwright show-report
+
+- await page.goto('https://demo.playwright.dev/todomvc/#/');
+
+- change programm language:
+npx playwright codegen --viewport-size=800,600 playwright.dev --output=./tests/test1.spec.js
+
+- save codegen in specific file:
+npx playwright codegen playwright.dev --output=./tests/test1.spec.js
+
+- emaluate device:
+npx playwright codegen --device="iPhone 13" playwright.dev
+npx playwright codegen --device="Pixel 5" playwright.dev
+
+- trace:
+npx playwright test trace.spec.ts  --trace on
+npx playwright show-report
+
+
+
+test('test', async ({ page }) => {
+  await page.goto('https://demo.playwright.dev/todomvc/#/');
+  await page.getByPlaceholder('What needs to be done?').click();
+  await page.getByPlaceholder('What needs to be done?').fill('complete UKGC');
+  await page.getByPlaceholder('What needs to be done?').press('Enter');
+  await page.getByPlaceholder('What needs to be done?').fill('complete Kungaslottet');
+  await page.getByPlaceholder('What needs to be done?').press('Enter');
+  await page.getByPlaceholder('What needs to be done?').fill('complete Megareaches');
+  await page.getByPlaceholder('What needs to be done?').press('Enter');
+  await expect(page.getByText('complete Kungaslottet')).toHaveCount(2);
+});
